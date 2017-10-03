@@ -86,6 +86,6 @@ public class RegexCorsFilter implements Filter {
 
 	@Override
 	public void destroy() {
-		// NOOP
+		corsFilter.destroy();
 	}
 }
