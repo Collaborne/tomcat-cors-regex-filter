@@ -80,7 +80,7 @@ public class RegexCorsFilter implements Filter {
 				allowedOriginPatterns.add(Pattern.compile(pattern));
 			}
 
-			allowedOriginPatterns.clear();
+			corsFilter.getAllowedOrigins().clear();
 		}
 	}
 
