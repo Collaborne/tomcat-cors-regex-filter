@@ -55,13 +55,15 @@ public class RegexCorsFilter implements Filter {
 			// Check the origin, if it is matching our regular expression then add
 			// that to the list of the allowed origins of the delegate CorsFilter first.
 			final String origin = ((HttpServletRequest) servletRequest).getHeader(CorsFilter.REQUEST_HEADER_ORIGIN);
-			for (Pattern allowedOriginPattern : allowedOriginPatterns) {
-				if (allowedOriginPattern.matcher(origin).matches()) {
-					if (corsFilter.getAllowedOrigins().add(origin)) {
-						log.debug("Added allowed origin " + origin);
+			if (origin != null) {
+				for (Pattern allowedOriginPattern : allowedOriginPatterns) {
+					if (allowedOriginPattern.matcher(origin).matches()) {
+						if (corsFilter.getAllowedOrigins().add(origin)) {
+							log.debug("Added allowed origin " + origin);
+						}
+	
+						break;
 					}
-
-					break;
 				}
 			}
 		}
